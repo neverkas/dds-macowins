@@ -3,7 +3,7 @@ object nueva{
 }
 
 object promocion{
-	var valor
+	var property valor = 0
 	
 	method precio(precioBase) = precioBase - valor
 }

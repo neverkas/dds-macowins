@@ -2,7 +2,7 @@ import estado.*
 
 class Prenda{
 	var precioBase
-	var estado
+	var property estado
 	
 	method precio() = estado.precio(precioBase)
 }

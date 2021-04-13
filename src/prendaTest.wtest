@@ -1,0 +1,71 @@
+import prenda.*
+import estado.*
+
+describe "Precio de un pantalon según su estado" {
+	const precioBase = 500	
+	var pantalon = new Pantalon(precioBase=precioBase, estado=nueva)
+	
+	test "Una pantalón de $500 nuevo mantiene su precio en $500" {
+		assert.equals(500, pantalon.precio())
+	}
+	
+	test "Una pantalón de $500 en promoción debe costar $300" {
+		promocion.valor(200)
+		pantalon = new Pantalon(precioBase=precioBase, estado=promocion)
+		
+		assert.equals(300, pantalon.precio())
+	}
+
+	test "Una pantalón de $500 en liquidación debe costar $250" {
+		pantalon = new Pantalon(precioBase=precioBase, estado=liquidacion)
+		
+		assert.equals(250, pantalon.precio())
+	}
+
+}
+
+describe "Precio de un saco según su estado" {
+	const precioBase = 500	
+	var saco = new Saco(precioBase=precioBase, estado=nueva)
+	
+	test "Un saco de $500 nuevo mantiene su precio en $500" {
+		assert.equals(500, saco.precio())
+	}
+	
+	test "Un saco de $500 en promoción debe costar $300" {
+		promocion.valor(200)
+		saco = new Saco(precioBase=precioBase, estado=promocion)
+		
+		assert.equals(300, saco.precio())
+	}
+
+	test "Un saco de $500 en liquidación debe costar $250" {
+		saco = new Saco(precioBase=precioBase, estado=liquidacion)
+		
+		assert.equals(250, saco.precio())
+	}
+	
+}
+
+describe "Precio de una camisa según su estado" {
+	const precioBase = 500	
+	var camisa = new Camisa(precioBase=precioBase, estado=nueva)
+	
+	test "Una camisa de $500 nuevo mantiene su precio en $500" {
+		assert.equals(500, camisa.precio())
+	}
+	
+	test "Una camisa de $500 en promoción debe costar $300" {
+		promocion.valor(200)
+		camisa = new Camisa(precioBase=precioBase, estado=promocion)
+		
+		assert.equals(300, camisa.precio())
+	}
+
+	test "Una camisa de $500 en liquidación debe costar $250" {
+		camisa = new Camisa(precioBase=precioBase, estado=liquidacion)
+		
+		assert.equals(250, camisa.precio())
+	}
+	
+}
