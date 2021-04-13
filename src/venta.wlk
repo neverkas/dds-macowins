@@ -3,15 +3,15 @@ import estado.*
 
 class Venta {	
 	var medioDePago
+	var fechaDeVenta
 	const prendas = []
 	
-	method fechaVendida() 		= fechaActual.fecha()
 	method cantidadPrendas() 	= prendas.size()	
-	method totalDeVentas() 		= medioDePago.precioVenta(prendas)
-}
-
-object fechaActual{
-	method fecha() = new Date().shortDescription()
+	method montoTotalDeVentas() = medioDePago.precioVenta(prendas)
+	
+	method fueRealizadaEnEstaFecha(fecha){
+		return fechaDeVenta == fecha
+	}
 }
 
 object efectivo{
