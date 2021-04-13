@@ -1,0 +1,37 @@
+import prenda.*
+import estado.*
+import venta.*
+import registroVentas.*
+
+describe "Registro ventas por fecha" {
+	const precioBase = 500	
+	var pantalonNuevo = new Pantalon(precioBase=precioBase, estado=nueva)
+
+	test "Hubo una ganancia de $1500 el 01/12/2020, si vendieron 3 pantalones nuevos de $500 en efectivo" {
+		const fechaRequerida = new Date(day=1,month=12,year=2020)		
+		const venta1 = new Venta(medioDePago=efectivo, fechaDeVenta=fechaRequerida, 
+			prendas=[pantalonNuevo, pantalonNuevo, pantalonNuevo]
+		)
+		
+		registroVentas.agregarVenta(venta1)
+
+		assert.equals(1500, registroVentas.montoTotalDeVentasSegunFecha(fechaRequerida))
+	}
+
+	test "Hubo una ganancia de $1900 el 01/12/2020, si vendieron 2 pantalones nuevos de $500 y 2 camisas nuevas de $200" {
+		var camisaNueva = new Camisa(precioBase=200, estado=nueva)
+			
+		const fechaRequerida = new Date(day=1,month=12,year=2020)		
+		const venta1 = new Venta(medioDePago=efectivo, fechaDeVenta=fechaRequerida, 
+			prendas=[pantalonNuevo, pantalonNuevo, pantalonNuevo]
+		)
+		const venta2 = new Venta(medioDePago=efectivo, fechaDeVenta=fechaRequerida, 
+			prendas=[camisaNueva, camisaNueva]
+		)
+		
+		registroVentas.agregarVariasVentas([venta1, venta2])
+
+		assert.equals(1900, registroVentas.montoTotalDeVentasSegunFecha(fechaRequerida))
+	}
+	
+}

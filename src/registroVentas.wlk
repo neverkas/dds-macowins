@@ -4,10 +4,14 @@ import venta.*
 
 object registroVentas {
 	const property ventas = []	
-	var fechaRequerida
 	
-	method ventasSegunFecha() = ventas.filter({ venta => venta.fueRealizadaEnEstaFecha(fechaRequerida) })
+	method ventasSegunFecha(fechaRequerida) = 
+		ventas.filter({ venta => venta.fueRealizadaEnEstaFecha(fechaRequerida) })
 	
-	method montoTotalDeVentasSegunFecha() = 
-		self.ventasSegunFecha().sum({ venta => venta.montoTotalDeVentas() })
+	method montoTotalDeVentasSegunFecha(fechaRequerida) = 
+		self.ventasSegunFecha(fechaRequerida).sum({ venta => venta.montoTotalDeVenta() })
+		
+	method agregarVenta(unaVenta) = ventas.add(unaVenta)
+	
+	method agregarVariasVentas(variasVentas) = ventas.addAll(variasVentas)
 }
