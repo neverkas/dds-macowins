@@ -7,7 +7,7 @@ class Venta {
 	const property prendas = []
 	
 	method cantidadPrendas() 	= prendas.size()	
-	method montoTotalDeVentas() = medioDePago.precioVenta(prendas)
+	method montoTotalDeVenta() = medioDePago.precioVenta(prendas)
 	
 	method fueRealizadaEnEstaFecha(fecha){
 		return fechaDeVenta == fecha
@@ -19,17 +19,15 @@ object efectivo{
 }
 
 object tarjeta{
-	var cuotas
-	var coeficiente
+	var property cuotas
+	var property coeficiente
 	
 
 	method precioVenta(prendas){
 		return prendas.sum({
-			prenda => self.recargo(prenda.precio())
+			prenda => self.recargo(prenda.precio())+prenda.precio()
 		})		
 	}
 		
-	method recargo(precio){		
-		cuotas*coeficiente + 0.01*precio
-	} 
+	method recargo(precio) = cuotas*coeficiente + 0.01*precio	 
 }

@@ -1,0 +1,41 @@
+import prenda.*
+import estado.*
+import venta.*
+
+describe "Precio de venta según el medio de pago" {
+
+	const precioBase = 500	
+	var pantalonNuevo = new Pantalon(precioBase=precioBase, estado=nueva)
+
+	test "Si se vendieron 3 pantalones, entonces se vendieron 3 prendas" {
+		const venta = new Venta(medioDePago=efectivo, fechaDeVenta=new Date(), 
+			prendas=[pantalonNuevo, pantalonNuevo, pantalonNuevo]
+		)
+		
+		assert.equals(3, venta.cantidadPrendas())
+	}
+	
+	
+	test "Se obtiene $1500 al vender en efectivo 3 pantalones nuevos de $500" {
+		const venta = new Venta(medioDePago=efectivo, fechaDeVenta=new Date(), 
+			prendas=[pantalonNuevo, pantalonNuevo, pantalonNuevo]
+		)
+		
+		assert.equals(1500, venta.montoTotalDeVenta())
+	}
+
+	test "Se obtiene $1695 al vender con tarjeta 3 pantalones nuevos de $500" {
+		tarjeta.cuotas(12)
+		tarjeta.coeficiente(5)
+		
+		const venta = new Venta(medioDePago=tarjeta, fechaDeVenta=new Date(), 
+			prendas=[pantalonNuevo, pantalonNuevo, pantalonNuevo]
+		)
+		
+		const recargo = (tarjeta.cuotas()*tarjeta.coeficiente() + 0.01*precioBase) * venta.cantidadPrendas()
+		const precioVenta = precioBase * venta.cantidadPrendas()
+				
+		assert.equals(precioVenta + recargo , venta.montoTotalDeVenta())
+	}
+	
+}
