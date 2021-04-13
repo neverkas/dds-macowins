@@ -3,11 +3,11 @@ import estado.*
 import venta.*
 
 object registroVentas {
-	var ventas = []	
+	const property ventas = []	
 	var fechaRequerida
 	
 	method ventasSegunFecha() = ventas.filter({ venta => venta.fueRealizadaEnEstaFecha(fechaRequerida) })
 	
-	method montoTotalDeVentas() = 
+	method montoTotalDeVentasSegunFecha() = 
 		self.ventasSegunFecha().sum({ venta => venta.montoTotalDeVentas() })
 }
