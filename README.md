@@ -2,7 +2,7 @@
 
 # Diagrama de clases 
 
-![diagrama de clases](./diagrama-de-clases.jpeg)
+![diagrama de clases](./assets/diagrama-de-clases.jpeg)
 
 - - -
 
